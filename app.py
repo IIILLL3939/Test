@@ -1,32 +1,50 @@
 import streamlit as st
 
-st.set_page_config(
-    page_title="첫 번째 Streamlit 앱",
-    page_icon="🎉",
-)
+st.set_page_config(layout="wide")
 
-# 배경색
-st.markdown("""
-<style>
-.stApp {
-    background-color: #4da6ff;
-}
+ROWS = 8
+COLS = 8
 
-h1 {
-    text-align: center;
-}
-</style>
-""", unsafe_allow_html=True)
+if "board" not in st.session_state:
+    st.session_state.board = [[0]*COLS for _ in range(ROWS)]
 
-# 제목
-st.title("안녕하세요")
+st.title("Block Blast Solver")
 
-st.markdown("<div style='height:20vh;'></div>", unsafe_allow_html=True)
+st.subheader("Board")
 
-# 버튼 가운데
-left, center, right = st.columns([1, 1, 1])
+for r in range(ROWS):
+    cols = st.columns(COLS)
 
-with center:
-    if st.button("나도 인사하기", use_container_width=True):
-        st.success("🎉 첫 웹앱 제작을 축하합니다!")
-        st.balloons()
+    for c in range(COLS):
+
+        color = "⬜"
+
+        if st.session_state.board[r][c]:
+            color = "⬛"
+
+        if cols[c].button(color,key=f"{r}_{c}"):
+
+            st.session_state.board[r][c] ^= 1
+            st.rerun()
+
+st.divider()
+
+st.subheader("Pieces")
+
+piece_names = [
+    "1",
+    "2h",
+    "2v",
+]
+
+p1 = st.selectbox("Piece 1",piece_names)
+p2 = st.selectbox("Piece 2",piece_names)
+p3 = st.selectbox("Piece 3",piece_names)
+
+col1,col2 = st.columns(2)
+
+with col1:
+    st.button("Solve")
+
+with col2:
+    st.button("Show Answer",type="primary")
