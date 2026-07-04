@@ -1,0 +1,235 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:Arial, Helvetica, sans-serif;
+
+    background:#63aef7;
+
+    display:flex;
+
+    justify-content:center;
+
+    padding:40px;
+
+}
+
+.container{
+
+    width:100%;
+
+    max-width:900px;
+
+    text-align:center;
+
+}
+
+h1{
+
+    margin-bottom:30px;
+
+    color:white;
+
+    font-size:42px;
+
+}
+
+.section{
+
+    margin-bottom:40px;
+
+}
+
+h2{
+
+    margin-bottom:20px;
+
+    color:white;
+
+}
+
+h3{
+
+    margin-bottom:10px;
+
+    color:white;
+
+}
+
+
+/* ========================= */
+/* Board                     */
+/* ========================= */
+
+#board{
+
+    display:grid;
+
+    grid-template-columns:repeat(8,50px);
+
+    grid-template-rows:repeat(8,50px);
+
+    gap:2px;
+
+    justify-content:center;
+
+    margin-bottom:20px;
+
+}
+
+.cell{
+
+    width:50px;
+
+    height:50px;
+
+    background:white;
+
+    border:1px solid #888;
+
+    cursor:pointer;
+
+    transition:.1s;
+
+}
+
+.cell.active{
+
+    background:#555;
+
+}
+
+
+/* ========================= */
+/* Pieces                    */
+/* ========================= */
+
+#pieces{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:40px;
+
+}
+
+.pieceContainer{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+}
+
+.piece{
+
+    display:grid;
+
+    grid-template-columns:repeat(5,40px);
+
+    grid-template-rows:repeat(5,40px);
+
+    gap:2px;
+
+}
+
+.piececell{
+
+    width:40px;
+
+    height:40px;
+
+    background:white;
+
+    border:1px solid #888;
+
+    cursor:pointer;
+
+    transition:.1s;
+
+}
+
+.piececell.active{
+
+    background:#555;
+
+}
+
+
+/* ========================= */
+/* Buttons                   */
+/* ========================= */
+
+button{
+
+    padding:12px 24px;
+
+    font-size:18px;
+
+    border:none;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    margin-top:20px;
+
+}
+
+button:hover{
+
+    filter:brightness(.9);
+
+}
+
+.greenButton{
+
+    background:#2ecc71;
+
+    color:white;
+
+}
+
+.blueButton{
+
+    background:#3498db;
+
+    color:white;
+
+}
+
+
+/* ========================= */
+/* Answer                    */
+/* ========================= */
+
+#answerControls{
+
+    margin-top:20px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:20px;
+
+}
+
+#stepText{
+
+    color:white;
+
+    font-size:22px;
+
+    font-weight:bold;
+
+}
