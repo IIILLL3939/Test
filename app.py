@@ -36,12 +36,48 @@ body{
 .cell.active{
     background:#555;
 }
+.piece{
+    display:grid;
+    grid-template-columns:repeat(5,45px);
+    grid-template-rows:repeat(5,45px);
+    gap:2px;
+    margin-bottom:30px;
+}
 
+.piececell{
+    width:45px;
+    height:45px;
+    border:1px solid #999;
+    background:white;
+    cursor:pointer;
+    box-sizing:border-box;
+}
+
+.piececell.active{
+    background:#555;
+}
 </style>
 
 <body>
 
 <div id="board"></div>
+
+<hr>
+
+<h3>Piece 1</h3>
+<div class="piece" id="piece1"></div>
+
+<h3>Piece 2</h3>
+<div class="piece" id="piece2"></div>
+
+<h3>Piece 3</h3>
+<div class="piece" id="piece3"></div>
+
+<br>
+
+<div style="text-align:center;">
+    <button onclick="clearPieces()">Clear Pieces</button>
+</div>
 
 <script>
 
@@ -64,7 +100,41 @@ for(let i=0;i<64;i++){
 }
 
 </script>
+function createPiece(id){
 
+    const piece=document.getElementById(id);
+
+    for(let i=0;i<25;i++){
+
+        const cell=document.createElement("div");
+
+        cell.className="piececell";
+
+        cell.onclick=()=>{
+
+            cell.classList.toggle("active");
+
+        };
+
+        piece.appendChild(cell);
+
+    }
+
+}
+
+createPiece("piece1");
+createPiece("piece2");
+createPiece("piece3");
+
+function clearPieces(){
+
+    document.querySelectorAll(".piececell.active").forEach(cell=>{
+
+        cell.classList.remove("active");
+
+    });
+
+}
 </body>
 
 </html>
