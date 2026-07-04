@@ -21,6 +21,8 @@ h1 {
 # 제목
 st.title("안녕하세요")
 
+st.markdown("<div style='height:20vh;'></div>", unsafe_allow_html=True)
+
 # 버튼 가운데
 left, center, right = st.columns([1, 1, 1])
 
