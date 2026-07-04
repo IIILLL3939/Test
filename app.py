@@ -80,26 +80,6 @@ body{
 </div>
 
 <script>
-
-const board=document.getElementById("board");
-
-for(let i=0;i<64;i++){
-
-    const cell=document.createElement("div");
-
-    cell.className="cell";
-
-    cell.onclick=()=>{
-
-        cell.classList.toggle("active");
-
-    }
-
-    board.appendChild(cell);
-
-}
-
-</script>
 function createPiece(id){
 
     const piece=document.getElementById(id);
@@ -135,6 +115,27 @@ function clearPieces(){
     });
 
 }
+
+const board=document.getElementById("board");
+
+for(let i=0;i<64;i++){
+
+    const cell=document.createElement("div");
+
+    cell.className="cell";
+
+    cell.onclick=()=>{
+
+        cell.classList.toggle("active");
+
+    }
+
+    board.appendChild(cell);
+
+}
+
+</script>
+
 </body>
 
 </html>
@@ -142,4 +143,4 @@ function clearPieces(){
 
 st.title("Block Blast Solver")
 
-components.html(html,height=410)
+components.html(html,height=1200)
