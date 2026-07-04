@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Block Blast Solver</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Block Blast Solver</h1>
+
+        <!-- ===================== -->
+        <!-- Board -->
+        <!-- ===================== -->
+
+        <div class="section">
+
+            <h2>Board</h2>
+
+            <div id="board"></div>
+
+            <button id="clearBoard">
+                Clear Board
+            </button>
+
+        </div>
+
+
+        <!-- ===================== -->
+        <!-- Pieces -->
+        <!-- ===================== -->
+
+        <div class="section">
+
+            <h2>Pieces</h2>
+
+            <div id="pieces">
+
+                <div class="pieceContainer">
+
+                    <h3>Piece 1</h3>
+
+                    <div id="piece1" class="piece"></div>
+
+                </div>
+
+                <div class="pieceContainer">
+
+                    <h3>Piece 2</h3>
+
+                    <div id="piece2" class="piece"></div>
+
+                </div>
+
+                <div class="pieceContainer">
+
+                    <h3>Piece 3</h3>
+
+                    <div id="piece3" class="piece"></div>
+
+                </div>
+
+            </div>
+
+            <button id="clearPieces">
+                Clear Pieces
+            </button>
+
+        </div>
+
+
+        <!-- ===================== -->
+        <!-- Solve -->
+        <!-- ===================== -->
+
+        <div class="section">
+
+            <button id="solveButton" class="greenButton">
+                Solve
+            </button>
+
+        </div>
+
+
+        <!-- ===================== -->
+        <!-- Answer -->
+        <!-- ===================== -->
+
+        <div class="section">
+
+            <button id="showAnswer" class="blueButton">
+                Show Answer
+            </button>
+
+            <div id="answerControls">
+
+                <button id="prevStep">
+                    ◀ Prev
+                </button>
+
+                <span id="stepText">
+                    Step 0 / 0
+                </span>
+
+                <button id="nextStep">
+                    Next ▶
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>
