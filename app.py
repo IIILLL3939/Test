@@ -1,146 +1,50 @@
-import streamlit as st
-import streamlit.components.v1 as components
+from flask import Flask, render_template, request, jsonify
 
-st.set_page_config(page_title="Block Blast Solver", layout="wide")
+app = Flask(__name__)
 
-html = """
-<!DOCTYPE html>
-<html>
 
-<style>
+@app.route("/")
+def index():
+    """
+    메인 페이지
+    """
+    return render_template("index.html")
 
-body{
-    margin:0;
-    display:flex;
-    justify-content:center;
-    background:white;
-}
 
-#board{
-    display:grid;
-    grid-template-columns:repeat(8,45px);
-    grid-template-rows:repeat(8,45px);
-    gap:2px;
-    margin-top:20px;
-}
+@app.route("/solve", methods=["POST"])
+def solve():
+    """
+    JavaScript에서 보드와 피스를 받아
+    solver.py로 넘기는 부분
+    """
 
-.cell{
-    width:45px;
-    height:45px;
-    background:white;
-    border:1px solid #999;
-    box-sizing:border-box;
-    cursor:pointer;
-}
+    data = request.get_json()
 
-.cell.active{
-    background:#555;
-}
-.piece{
-    display:grid;
-    grid-template-columns:repeat(5,45px);
-    grid-template-rows:repeat(5,45px);
-    gap:2px;
-    margin-bottom:30px;
-}
+    board = data.get("board", [])
+    pieces = data.get("pieces", [])
 
-.piececell{
-    width:45px;
-    height:45px;
-    border:1px solid #999;
-    background:white;
-    cursor:pointer;
-    box-sizing:border-box;
-}
+    # -----------------------------
+    # TODO
+    # 여기서 solver.py 호출
+    #
+    # 예시
+    #
+    # from solver import solve
+    # answer = solve(board, pieces)
+    #
+    # -----------------------------
 
-.piececell.active{
-    background:#555;
-}
-</style>
-
-<body>
-
-<div id="board"></div>
-
-<hr>
-
-<h3>Piece 1</h3>
-<div class="piece" id="piece1"></div>
-
-<h3>Piece 2</h3>
-<div class="piece" id="piece2"></div>
-
-<h3>Piece 3</h3>
-<div class="piece" id="piece3"></div>
-
-<br>
-
-<div style="text-align:center;">
-    <button onclick="clearPieces()">Clear Pieces</button>
-</div>
-
-<script>
-function createPiece(id){
-
-    const piece=document.getElementById(id);
-
-    for(let i=0;i<25;i++){
-
-        const cell=document.createElement("div");
-
-        cell.className="piececell";
-
-        cell.onclick=()=>{
-
-            cell.classList.toggle("active");
-
-        };
-
-        piece.appendChild(cell);
-
+    answer = {
+        "success": True,
+        "moves": []
     }
 
-}
+    return jsonify(answer)
 
-createPiece("piece1");
-createPiece("piece2");
-createPiece("piece3");
 
-function clearPieces(){
-
-    document.querySelectorAll(".piececell.active").forEach(cell=>{
-
-        cell.classList.remove("active");
-
-    });
-
-}
-
-const board=document.getElementById("board");
-
-for(let i=0;i<64;i++){
-
-    const cell=document.createElement("div");
-
-    cell.className="cell";
-
-    cell.onclick=()=>{
-
-        cell.classList.toggle("active");
-
-    }
-
-    board.appendChild(cell);
-
-}
-
-</script>
-
-</body>
-
-</html>
-"""
-
-st.title("Block Blast Solver")
-
-components.html(html,height=1200)
+if __name__ == "__main__":
+    app.run(
+        host="127.0.0.1",
+        port=5000,
+        debug=True
+    )
